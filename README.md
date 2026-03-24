@@ -25,6 +25,8 @@ hdr_names = list(range(psf.trc_hdr_names.TRC_SEQ_LINE, psf.trc_hdr_names.SOU_MEA
 #or
 hdr_names = [psf.trc_hdr_names.FFID, psf.trc_hdr_names.CHAN] #to read some of standard headers
 hdrs, samps = isgy.read_traces(hdr_names) #to read all standard headers
-osgy = psf.Writer("test.sgy", txt_hdr, bin_hdr)
+osgy = psf.Writer("test.sgy", txt_hdr.encode(), bin_hdr) #don't forget to transform string to bytes
+#or
+osgy = psf.Writer("test.sgy", txt_hdr_raw, bin_hdr)
 osgy.write_traces(hdr_names, hdrs, samps)
 ```
